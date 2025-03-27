@@ -9,11 +9,12 @@
     body {
       font-family: sans-serif;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       background-color: #f7f7f7;
+      padding-top: 40px;
     }
     .card {
       background-color: white;
@@ -27,9 +28,12 @@
     .stars {
       font-size: 2rem;
       color: #ccc;
+      user-select: none;
+    }
+    .stars span {
       cursor: pointer;
     }
-    .stars .selected {
+    .stars span.selected {
       color: gold;
     }
     button {
@@ -54,9 +58,13 @@
 </head>
 <body>
   <div class="card" id="step1">
-    <h2>本日のご利用は<br>いかがでしたか？</h2>
+    <h2 style="white-space: nowrap;">本日のご利用はいかがでしたか？</h2>
     <div class="stars" id="stars">
-      ★★★★★
+      <span data-index="1">★</span>
+      <span data-index="2">★</span>
+      <span data-index="3">★</span>
+      <span data-index="4">★</span>
+      <span data-index="5">★</span>
     </div>
     <button onclick="submitStars()">送信</button>
   </div>
@@ -83,17 +91,22 @@
 
   <script>
     let selected = 0;
-    const starsDiv = document.getElementById("stars");
-    starsDiv.addEventListener("click", (e) => {
-      if (e.target.textContent === "★") {
-        selected = [...starsDiv.textContent].indexOf(e.target.textContent) + 1;
-        starsDiv.innerHTML = "★★★★★".split("").map((star, i) =>
-          i < selected ? `<span class='selected'>★</span>` : "★"
-        ).join("");
-      }
+    const stars = document.querySelectorAll("#stars span");
+
+    stars.forEach((star, index) => {
+      star.addEventListener("click", () => {
+        selected = index + 1;
+        stars.forEach((s, i) => {
+          s.classList.toggle("selected", i < selected);
+        });
+      });
     });
 
     function submitStars() {
+      if (selected === 0) {
+        alert("星を選んでください");
+        return;
+      }
       document.getElementById("step1").style.display = "none";
       if (selected >= 4) {
         document.getElementById("step2-high").style.display = "block";
