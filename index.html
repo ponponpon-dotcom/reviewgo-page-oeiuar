@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>レビューご協力のお願い</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2em;
+      background-color: #f8f8f8;
+    }
+    .card {
+      background: white;
+      padding: 2em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .stars {
+      font-size: 2em;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .stars.selected {
+      color: gold;
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.5em 1.5em;
+      font-size: 1em;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #thankyou, #lowRatingForm, #reviewRedirect, #couponPage {
+      display: none;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="ratingPage">
+    <h2>本日のご利用はいかがでしたか？</h2>
+    <div id="starsContainer">
+      <span class="stars" data-score="1">★</span>
+      <span class="stars" data-score="2">★</span>
+      <span class="stars" data-score="3">★</span>
+      <span class="stars" data-score="4">★</span>
+      <span class="stars" data-score="5">★</span>
+    </div>
+    <button onclick="submitRating()">送信</button>
+  </div>
+
+  <div class="card" id="thankyou">
+    <h2>ご意見ありがとうございます</h2>
+  </div>
+
+  <div class="card" id="lowRatingForm">
+    <h3>よろしければご意見をお聞かせください</h3>
+    <textarea placeholder="ご意見を入力してください"></textarea>
+    <button onclick="goToCoupon()">送信</button>
+  </div>
+
+  <div class="card" id="couponPage">
+    <h2>ご来店ありがとうございました</h2>
+    <p>次回ご利用いただけるクーポン</p>
+    <div style="border: 1px dashed gray; padding: 1em; margin: 1em auto; width: 80%; background: #ffffe0;">
+      この画面をスタッフにご提示ください：<br />
+      ⭐ 次回500円引き ⭐
+    </div>
+  </div>
+
+  <div class="card" id="reviewRedirect">
+    <h2>ご来店ありがとうございました！</h2>
+    <p>もしよろしければ、レビューのご協力をお願いいたします。</p>
+    <button onclick="window.location.href='https://www.google.com'">レビューを書く</button>
+  </div>
+
+  <script>
+    let selectedScore = 0;
+
+    document.querySelectorAll('.stars').forEach(star => {
+      star.addEventListener('click', () => {
+        selectedScore = parseInt(star.dataset.score);
+        document.querySelectorAll('.stars').forEach(s => s.classList.remove('selected'));
+        for (let i = 1; i <= selectedScore; i++) {
+          document.querySelector(`.stars[data-score="${i}"]`).classList.add('selected');
+        }
+      });
+    });
+
+    function submitRating() {
+      document.getElementById('ratingPage').style.display = 'none';
+      if (selectedScore >= 4) {
+        document.getElementById('reviewRedirect').style.display = 'block';
+      } else if (selectedScore > 0) {
+        document.getElementById('lowRatingForm').style.display = 'block';
+      } else {
+        alert('星を選択してください');
+        document.getElementById('ratingPage').style.display = 'block';
+      }
+    }
+
+    function goToCoupon() {
+      document.getElementById('lowRatingForm').style.display = 'none';
+      document.getElementById('couponPage').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
