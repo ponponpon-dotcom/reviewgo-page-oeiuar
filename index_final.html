@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ReviewGo - アンケート</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f7f7f7;
+      padding-top: 60px;
+    }
+    .card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+    }
+    .stars span {
+      font-size: 2rem;
+      color: #ccc;
+      cursor: pointer;
+      user-select: none;
+    }
+    .stars span.selected {
+      color: gold;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="step1">
+    <h2>本日のご利用はいかがでしたか？</h2>
+    <div class="stars" id="stars">
+      <span data-index="1">★</span>
+      <span data-index="2">★</span>
+      <span data-index="3">★</span>
+      <span data-index="4">★</span>
+      <span data-index="5">★</span>
+    </div>
+    <button onclick="submitStars()">送信</button>
+  </div>
+
+  <div class="card" id="step2-high" style="display:none">
+    <h2>ご来店<br>ありがとうございました！</h2>
+    <p>もしよろしければ、レビューの<br>ご協力をお願いいたします。</p>
+    <button onclick="window.open('https://www.google.com', '_blank')">レビューを書く</button>
+  </div>
+
+  <div class="card" id="step2-low" style="display:none">
+    <h2>よろしければ<br>ご意見をお聞かせください</h2>
+    <textarea placeholder="ご意見を入力してください"></textarea>
+    <button onclick="showCoupon()">送信</button>
+  </div>
+
+  <div class="card" id="step3-coupon" style="display:none">
+    <h2>ご来店<br>ありがとうございました</h2>
+    <p>次回ご利用いただけるクーポン</p>
+    <div style="padding:10px; background:#ffffcc; border:1px dashed #999; margin-top:10px;">
+      この画面をスタッフにご提示ください：<br>★ 次回500円引き ★
+    </div>
+  </div>
+
+  <script>
+    let selected = 0;
+    const stars = document.querySelectorAll(".stars span");
+
+    stars.forEach((star, index) => {
+      star.addEventListener("click", () => {
+        selected = index + 1;
+        stars.forEach((s, i) => {
+          s.classList.toggle("selected", i < selected);
+        });
+      });
+    });
+
+    function submitStars() {
+      if (selected === 0) {
+        alert("星を選んでください");
+        return;
+      }
+      document.getElementById("step1").style.display = "none";
+      if (selected >= 4) {
+        document.getElementById("step2-high").style.display = "block";
+      } else {
+        document.getElementById("step2-low").style.display = "block";
+      }
+    }
+
+    function showCoupon() {
+      document.getElementById("step2-low").style.display = "none";
+      document.getElementById("step3-coupon").style.display = "block";
+    }
+  </script>
+</body>
+</html>
