@@ -1,155 +1,245 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReviewGo - 詳細アンケート</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReviewGo - アンケート</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-        }
+    .card {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-        }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #333;
+    }
 
-        .stars {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
+    .star-rating {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
 
-        .star {
-            font-size: 2em;
-            color: gray;
-            transition: color 0.2s;
-            user-select: none;
-        }
+    .star {
+      font-size: 30px;
+      color: lightgray;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
 
-        .star:hover,
-        .star:hover~.star {
-            color: gold;
-        }
+    .star.selected,
+    .star.hover {
+      color: #fbbf24;
+    }
 
-        .selected {
-            color: gold;
-        }
+    button {
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-        .hidden {
-            display: none;
-        }
+    button:hover {
+      background-color: #2563eb;
+    }
 
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
+    textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
 
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
+    select {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      margin-top: 8px;
+      border-radius: 6px;
+    }
 
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    .question {
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    .coupon-box {
+      background-color: #fef9c3;
+      border: 1px dashed #facc15;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+
+    #step2-high, #step2-low, #step3-coupon {
+      display: none;
+    }
+  </style>
 </head>
-
 <body>
-    <div class="card" id="step1">
-        <h2>本日のご利用はいかがでしたか？</h2>
-        <div class="stars" id="stars">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
-        </div>
-        <button onclick="submitStars()">送信</button>
+  <div class="card" id="step1">
+    <h2>本日のご利用はいかがでしたか？</h2>
+    <div class="star-rating" id="stars">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+    <button onclick="submitStars()">送信</button>
+  </div>
+
+  <div class="card" id="step2-high">
+    <h2>ご来店ありがとうございました！</h2>
+    <p>よろしければレビューをお願いします。</p>
+    <button onclick="window.open('https://www.google.com','_blank')">レビューを書く</button>
+  </div>
+
+  <div class="card" id="step2-low">
+    <h2>よろしければご意見をお聞かせください</h2>
+
+    <!-- 詳細アンケート -->
+    <div class="question">
+      <label>接客はいかがでしたか？</label>
+      <select>
+        <option>5（とても良い）</option>
+        <option>4（良い）</option>
+        <option>3（普通）</option>
+        <option>2（悪い）</option>
+        <option>1（とても悪い）</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>提供のスピードはどうでしたか？</label>
+      <select>
+        <option>5（とても速い）</option>
+        <option>4（速い）</option>
+        <option>3（普通）</option>
+        <option>2（遅い）</option>
+        <option>1（とても遅い）</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>店内の清潔感は？</label>
+      <select>
+        <option>5（とても清潔）</option>
+        <option>4（清潔）</option>
+        <option>3（普通）</option>
+        <option>2（やや不衛生）</option>
+        <option>1（不衛生）</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>商品やサービスの満足度は？</label>
+      <select>
+        <option>5（とても満足）</option>
+        <option>4（満足）</option>
+        <option>3（普通）</option>
+        <option>2（やや不満）</option>
+        <option>1（不満）</option>
+      </select>
+    </div>
+    <div class="question">
+      <label>ご意見があればご記入ください</label>
+      <textarea placeholder="自由にご記入ください"></textarea>
     </div>
 
-    <div class="card hidden" id="step2-high">
-        <h2>ご来店ありがとうございました</h2>
-        <p>もしよろしければ、レビューのご協力をお願いいたします。</p>
-        <button onclick="location.href='https://www.google.com';">レビューを書く</button>
+    <button onclick="showCoupon()">送信</button>
+  </div>
+
+  <div class="card" id="step3-coupon">
+    <h2>ご協力ありがとうございました</h2>
+    <p>次回ご利用いただけるクーポン</p>
+    <div class="coupon-box">
+      この画面をスタッフにご提示ください：<br />
+      ⭐ 次回500円引き ⭐
     </div>
+  </div>
 
-    <div class="card hidden" id="step2-low">
-        <h2>よろしければご意見をお聞かせください</h2>
-        <textarea placeholder="ご意見を入力してください"></textarea>
-        <button onclick="showCoupon()">送信</button>
-    </div>
+  <script>
+    let selected = 0;
+    const stars = document.querySelectorAll(".star");
 
-    <div class="card hidden" id="step3-coupon">
-        <h2>ご来店ありがとうございました</h2>
-        <p>次回ご利用いただけるクーポン</p>
-        <div style="border:1px dashed gray; padding:10px; margin-top:10px;">
-            この画面をスタッフにご提示ください<br>
-            ★ 次回500円引き ★
-        </div>
-    </div>
+    stars.forEach((star) => {
+      star.addEventListener("mouseover", () => {
+        resetHover();
+        highlightUpTo(star.dataset.value, "hover");
+      });
 
-    <script>
-        const stars = document.querySelectorAll('.star');
-        let selected = 0;
+      star.addEventListener("mouseout", () => {
+        resetHover();
+      });
 
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                selected = parseInt(star.getAttribute('data-value'));
-                stars.forEach(s => s.classList.remove('selected'));
-                stars.forEach(s => {
-                    if (parseInt(s.getAttribute('data-value')) <= selected) {
-                        s.classList.add('selected');
-                    }
-                });
-            });
-        });
+      star.addEventListener("click", () => {
+        selected = parseInt(star.dataset.value);
+        updateSelection();
+      });
+    });
 
-        function submitStars() {
-            if (selected === 0) {
-                alert("星を選んでください");
-                return;
-            }
-            document.getElementById("step1").style.display = "none";
-            if (selected >= 4) {
-                document.getElementById("step2-high").style.display = "block";
-            } else {
-                document.getElementById("step2-low").style.display = "block";
-            }
+    function highlightUpTo(value, className) {
+      stars.forEach((s) => {
+        if (s.dataset.value <= value) {
+          s.classList.add(className);
         }
+      });
+    }
 
-        function showCoupon() {
-            document.getElementById("step2-low").style.display = "none";
-            document.getElementById("step3-coupon").style.display = "block";
+    function resetHover() {
+      stars.forEach((s) => s.classList.remove("hover"));
+    }
+
+    function updateSelection() {
+      stars.forEach((s) => {
+        s.classList.remove("selected");
+        if (s.dataset.value <= selected) {
+          s.classList.add("selected");
         }
-    </script>
+      });
+    }
+
+    function submitStars() {
+      if (selected === 0) {
+        alert("★を選んでください");
+        return;
+      }
+      document.getElementById("step1").style.display = "none";
+      if (selected >= 4) {
+        document.getElementById("step2-high").style.display = "block";
+      } else {
+        document.getElementById("step2-low").style.display = "block";
+      }
+    }
+
+    function showCoupon() {
+      document.getElementById("step2-low").style.display = "none";
+      document.getElementById("step3-coupon").style.display = "block";
+    }
+  </script>
 </body>
-
 </html>
