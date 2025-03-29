@@ -1,113 +1,69 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReviewGo | レビューに、最適な導線を。</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      background: #3b82f6;
-      color: white;
-      padding: 30px;
-      text-align: center;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-      background: white;
-      margin-top: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    h2 {
-      font-size: 20px;
-      margin-top: 30px;
-    }
-    p {
-      margin-bottom: 10px;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    .cta {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .cta button {
-      padding: 10px 20px;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #888;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReviewGo | レビューに、最適な導線を。</title>
+    <style>
+        body {font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #f9f9f9;}
+        header {background: #3b82f6; color: white; padding: 40px 20px; text-align: center;}
+        section {padding: 40px 20px; max-width: 800px; margin: auto;}
+        h2 {color: #333;}
+        p {line-height: 1.6;}
+        .features, .plans {display: flex; flex-wrap: wrap; gap: 20px;}
+        .feature, .plan {background: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 250px; box-shadow: 0 0 5px rgba(0,0,0,0.1);}
+        footer {background: #eee; padding: 20px; text-align: center; font-size: 14px;}
+        .cta {background: #3b82f6; color: white; text-align: center; padding: 20px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 20px;}
+    </style>
 </head>
 <body>
 
-  <header>
+<header>
     <h1>ReviewGo</h1>
     <p>レビューに、最適な導線を。</p>
-  </header>
+</header>
 
-  <section>
+<section>
     <h2>ReviewGoとは？</h2>
-    <p>ReviewGoは、Googleレビューとアンケートを組み合わせた、レビュー誘導ツールです。</p>
-    <p>高評価のお客様にはレビューを、低評価のお客様にはアンケートを。</p>
-    <p>お店に最適なフィードバックの導線を作ります。</p>
+    <p>ReviewGoは、Googleレビューとアンケートを組み合わせたレビュー誘導ツールです。<br>高評価のお客様にはレビューを、低評価のお客様にはアンケートを。お店に最適なフィードバックの導線を作ります。</p>
+</section>
 
-    <h2>機能一覧</h2>
-    <ul>
-      <li>QRコード設置のみで運用OK</li>
-      <li>高評価 → Googleレビュー誘導</li>
-      <li>低評価 → 無記名アンケート</li>
-      <li>アンケート結果はメールでお届け</li>
-      <li>アンケートカスタマイズ（プレミアム）</li>
-      <li>クーポン発行（ベーシック・プレミアム）</li>
-    </ul>
-
-    <h2>導入の流れ</h2>
-    <ul>
-      <li>フォームからお申込み</li>
-      <li>QRコード発行（即日）</li>
-      <li>店舗に設置して運用開始</li>
-      <li>必要に応じて、アクリルスタンドやデザインQRもご用意</li>
-    </ul>
-
-    <h2>よくある質問</h2>
-    <ul>
-      <li>アンケート結果はどこで見れますか？ → 指定のメールに届きます</li>
-      <li>クーポンは必須ですか？ → 任意で利用できます</li>
-      <li>QRコードは何枚でも作れますか？ → 複数店舗にも対応しています</li>
-    </ul>
-
-    <div class="cta">
-      <button>お問い合わせ・お申し込み</button>
+<section>
+    <h2>主な機能</h2>
+    <div class="features">
+        <div class="feature"><h3>QRコードで簡単運用</h3><p>QRを読み取るだけでアンケート開始。</p></div>
+        <div class="feature"><h3>高評価→Googleレビュー</h3><p>高評価のお客様のみをGoogleレビューに誘導。</p></div>
+        <div class="feature"><h3>低評価→無記名アンケート</h3><p>低評価は匿名アンケートで改善に活用。</p></div>
+        <div class="feature"><h3>結果はメール送付</h3><p>アンケート結果は自動で担当者にメール送信。</p></div>
+        <div class="feature"><h3>クーポン機能</h3><p>回答後に割引クーポンを表示（プレミアム）。</p></div>
+        <div class="feature"><h3>アンケートカスタマイズ</h3><p>設問やデザインは自由に設定可能（プレミアム）。</p></div>
     </div>
-  </section>
+</section>
 
-  <footer>
-    © 2025 ReviewGo
-  </footer>
+<section>
+    <h2>導入の流れ</h2>
+    <p>フォーム記入 → QR発行 → 設置するだけでOK。</p>
+</section>
+
+<section>
+    <h2>プラン</h2>
+    <div class="plans">
+        <div class="plan">
+            <h3>ベーシック</h3>
+            <p>・レビュー＆アンケート機能<br>・クーポン発行<br>・結果メール送信</p>
+        </div>
+        <div class="plan">
+            <h3>プレミアム</h3>
+            <p>・ベーシックの全機能<br>・アンケートカスタマイズ<br>・クーポンデザイン変更</p>
+        </div>
+    </div>
+    <a href="#" class="cta">まずは資料を見る</a>
+</section>
+
+<footer>
+    © 2025 ReviewGo All rights reserved.
+</footer>
 
 </body>
 </html>
+
