@@ -1,69 +1,112 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ReviewGo | レビューに、最適な導線を。</title>
     <style>
-        body {font-family: 'Arial', sans-serif; margin: 0; padding: 0; background: #f9f9f9;}
-        header {background: #3b82f6; color: white; padding: 40px 20px; text-align: center;}
-        section {padding: 40px 20px; max-width: 800px; margin: auto;}
-        h2 {color: #333;}
-        p {line-height: 1.6;}
-        .features, .plans {display: flex; flex-wrap: wrap; gap: 20px;}
-        .feature, .plan {background: white; padding: 20px; border-radius: 8px; flex: 1; min-width: 250px; box-shadow: 0 0 5px rgba(0,0,0,0.1);}
-        footer {background: #eee; padding: 20px; text-align: center; font-size: 14px;}
-        .cta {background: #3b82f6; color: white; text-align: center; padding: 20px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 20px;}
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9fafc;
+            color: #333;
+        }
+        header {
+            background-color: #3b82f6;
+            color: #fff;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        section {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .features, .plans, .faq, .contact {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            padding: 30px;
+        }
+        h2 {
+            border-left: 5px solid #3b82f6;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        .footer {
+            background: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+        }
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>ReviewGo</h1>
+        <p>レビューに、最適な導線を。</p>
+    </header>
 
-<header>
-    <h1>ReviewGo</h1>
-    <p>レビューに、最適な導線を。</p>
-</header>
+    <section class="about">
+        <h2>ReviewGoとは？</h2>
+        <p>ReviewGoは、Googleレビューとアンケートを組み合わせた、レビュー誘導ツールです。</p>
+        <p>高評価のお客様にはレビューを、低評価のお客様にはアンケートを。</p>
+        <p>お店に最適なフィードバックの導線を作ります。</p>
+    </section>
 
-<section>
-    <h2>ReviewGoとは？</h2>
-    <p>ReviewGoは、Googleレビューとアンケートを組み合わせたレビュー誘導ツールです。<br>高評価のお客様にはレビューを、低評価のお客様にはアンケートを。お店に最適なフィードバックの導線を作ります。</p>
-</section>
+    <section class="features">
+        <h2>主な機能</h2>
+        <ul>
+            <li>QRコード設置のみで運用OK</li>
+            <li>高評価 → Googleレビュー誘導</li>
+            <li>低評価 → 無記名アンケート</li>
+            <li>アンケート結果はメールでお届け（プレミアム）</li>
+            <li>クーポン発行機能</li>
+            <li>アンケートカスタマイズ（オプション）</li>
+        </ul>
+    </section>
 
-<section>
-    <h2>主な機能</h2>
-    <div class="features">
-        <div class="feature"><h3>QRコードで簡単運用</h3><p>QRを読み取るだけでアンケート開始。</p></div>
-        <div class="feature"><h3>高評価→Googleレビュー</h3><p>高評価のお客様のみをGoogleレビューに誘導。</p></div>
-        <div class="feature"><h3>低評価→無記名アンケート</h3><p>低評価は匿名アンケートで改善に活用。</p></div>
-        <div class="feature"><h3>結果はメール送付</h3><p>アンケート結果は自動で担当者にメール送信。</p></div>
-        <div class="feature"><h3>クーポン機能</h3><p>回答後に割引クーポンを表示（プレミアム）。</p></div>
-        <div class="feature"><h3>アンケートカスタマイズ</h3><p>設問やデザインは自由に設定可能（プレミアム）。</p></div>
+    <section class="plans">
+        <h2>料金プラン</h2>
+        <ul>
+            <li><strong>ベーシックプラン:</strong> 2,980円/月（クーポン発行機能）</li>
+            <li><strong>プレミアムプラン:</strong> 4,980円/月（アンケート結果即時送付）</li>
+            <li><strong>オプション:</strong> クーポン画像カスタム、アンケート内容カスタム、アクリルスタンド作成など</li>
+        </ul>
+    </section>
+
+    <section class="faq">
+        <h2>よくある質問</h2>
+        <p>準備中</p>
+    </section>
+
+    <section class="contact">
+        <h2>お問い合わせ</h2>
+        <p>詳細やお申し込みは以下よりご連絡ください。</p>
+        <p>メール: info@example.com</p>
+    </section>
+
+    <div class="footer">
+        &copy; 2025 ReviewGo All rights reserved.
     </div>
-</section>
-
-<section>
-    <h2>導入の流れ</h2>
-    <p>フォーム記入 → QR発行 → 設置するだけでOK。</p>
-</section>
-
-<section>
-    <h2>プラン</h2>
-    <div class="plans">
-        <div class="plan">
-            <h3>ベーシック</h3>
-            <p>・レビュー＆アンケート機能<br>・クーポン発行<br>・結果メール送信</p>
-        </div>
-        <div class="plan">
-            <h3>プレミアム</h3>
-            <p>・ベーシックの全機能<br>・アンケートカスタマイズ<br>・クーポンデザイン変更</p>
-        </div>
-    </div>
-    <a href="#" class="cta">まずは資料を見る</a>
-</section>
-
-<footer>
-    © 2025 ReviewGo All rights reserved.
-</footer>
-
 </body>
+
 </html>
+
 
